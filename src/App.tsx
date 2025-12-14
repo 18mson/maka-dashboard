@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import Layout from './components/Layout';
+import HomePage from './pages/HomePage';
 import OwnersPage from './pages/OwnersPage';
 import OwnerDetailPage from './pages/OwnerDetailPage';
 import ChargerStationsPage from './pages/ChargerStationsPage';
 
-type Page = 'owners' | 'stations' | 'owner-detail';
+type Page = 'home' | 'owners' | 'stations' | 'owner-detail';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<Page>('owners');
+  const [currentPage, setCurrentPage] = useState<Page>('home');
   const [selectedOwnerId, setSelectedOwnerId] = useState<string | null>(null);
 
   const handleNavigate = (page: string) => {
@@ -26,6 +27,7 @@ function App() {
 
   return (
     <Layout currentPage={currentPage} onNavigate={handleNavigate}>
+      {currentPage === 'home' && <HomePage />}
       {currentPage === 'owners' && (
         <OwnersPage onViewDetails={handleViewOwnerDetails} />
       )}

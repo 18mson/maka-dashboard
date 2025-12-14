@@ -1,4 +1,4 @@
-import { Users, Battery, Menu } from 'lucide-react';
+import { Users, Battery, Menu, Home } from 'lucide-react';
 import { useState } from 'react';
 
 interface LayoutProps {
@@ -11,6 +11,7 @@ export default function Layout({ children, currentPage, onNavigate }: LayoutProp
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const menuItems = [
+    { id: 'home', label: 'Dashboard', icon: Home },
     { id: 'owners', label: 'Motor Owners', icon: Users },
     { id: 'stations', label: 'Charger Stations', icon: Battery },
   ];
