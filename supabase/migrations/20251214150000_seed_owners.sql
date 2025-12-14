@@ -1,0 +1,23 @@
+-- Seed data for owners table with 20 mock records
+
+INSERT INTO owners (id, name, email, phone, motor_model, motor_serial, purchase_date, status, created_at, updated_at) VALUES
+('550e8400-e29b-41d4-a716-446655440001', 'Somchai Wong', 'somchai.wong@example.com', '+66812345678', 'Tesla Model 3', 'TM3-2023-001', '2023-01-15', 'active', '2023-01-15 10:00:00+00', '2023-01-15 10:00:00+00'),
+('550e8400-e29b-41d4-a716-446655440002', 'Siriporn Tan', 'siriporn.tan@example.com', '+66823456789', 'Nissan Leaf', 'NL-2022-045', '2022-03-22', 'active', '2022-03-22 14:30:00+00', '2022-03-22 14:30:00+00'),
+('550e8400-e29b-41d4-a716-446655440003', 'Apichai Srisuk', 'apichai.srisuk@example.com', '+66834567890', 'BMW i3', 'BI3-2024-078', '2024-05-10', 'active', '2024-05-10 09:15:00+00', '2024-05-10 09:15:00+00'),
+('550e8400-e29b-41d4-a716-446655440004', 'Nattaporn Chai', 'nattaporn.chai@example.com', '+66845678901', 'Tesla Model Y', 'TMY-2023-112', '2023-07-08', 'active', '2023-07-08 16:45:00+00', '2023-07-08 16:45:00+00'),
+('550e8400-e29b-41d4-a716-446655440005', 'Kittisak Boon', 'kittisak.boon@example.com', '+66856789012', 'Hyundai Kona Electric', 'HKE-2022-156', '2022-09-14', 'inactive', '2022-09-14 11:20:00+00', '2024-01-10 08:00:00+00'),
+('550e8400-e29b-41d4-a716-446655440006', 'Patcharaporn Wattan', 'patcharaporn.wattan@example.com', '+66867890123', 'Volkswagen ID.4', 'VID4-2024-203', '2024-02-28', 'active', '2024-02-28 13:10:00+00', '2024-02-28 13:10:00+00'),
+('550e8400-e29b-41d4-a716-446655440007', 'Thawatchai Lim', 'thawatchai.lim@example.com', '+66878901234', 'Tesla Model S', 'TMS-2021-089', '2021-11-05', 'active', '2021-11-05 15:55:00+00', '2021-11-05 15:55:00+00'),
+('550e8400-e29b-41d4-a716-446655440008', 'Rattana Kong', 'rattana.kong@example.com', '+66889012345', 'Polestar 2', 'P2-2023-267', '2023-04-17', 'active', '2023-04-17 12:40:00+00', '2023-04-17 12:40:00+00'),
+('550e8400-e29b-41d4-a716-446655440009', 'Suthep Chaisri', 'suthep.chaisri@example.com', '+66890123456', 'Audi e-tron', 'AeT-2022-334', '2022-06-30', 'suspended', '2022-06-30 17:25:00+00', '2024-03-15 10:30:00+00'),
+('550e8400-e29b-41d4-a716-446655440010', 'Kanokwan Phrom', 'kanokwan.phrom@example.com', '+66901234567', 'Kia EV6', 'KEV6-2024-401', '2024-08-12', 'active', '2024-08-12 14:50:00+00', '2024-08-12 14:50:00+00'),
+('550e8400-e29b-41d4-a716-446655440011', 'Prasert Wongsa', 'prasert.wongsa@example.com', '+66912345678', 'Tesla Model X', 'TMX-2023-478', '2023-10-03', 'active', '2023-10-03 11:35:00+00', '2023-10-03 11:35:00+00'),
+('550e8400-e29b-41d4-a716-446655440012', 'Supaporn Nguan', 'supaporn.nguan@example.com', '+66923456789', 'Nissan Ariya', 'NA-2024-512', '2024-01-20', 'active', '2024-01-20 16:20:00+00', '2024-01-20 16:20:00+00'),
+('550e8400-e29b-41d4-a716-446655440013', 'Chaiyaporn Sombat', 'chaiyaporn.sombat@example.com', '+66934567890', 'Ford Mustang Mach-E', 'FMME-2022-623', '2022-12-07', 'inactive', '2022-12-07 13:05:00+00', '2023-08-20 09:45:00+00'),
+('550e8400-e29b-41d4-a716-446655440014', 'Wanchai Rattan', 'wanchai.rattan@example.com', '+66945678901', 'Tesla Model 3', 'TM3-2024-689', '2024-04-25', 'active', '2024-04-25 10:15:00+00', '2024-04-25 10:15:00+00'),
+('550e8400-e29b-41d4-a716-446655440015', 'Pimchanok Saeng', 'pimchanok.saeng@example.com', '+66956789012', 'Hyundai Ioniq 5', 'HI5-2023-734', '2023-06-18', 'active', '2023-06-18 15:40:00+00', '2023-06-18 15:40:00+00'),
+('550e8400-e29b-41d4-a716-446655440016', 'Kriengsak Boonmee', 'kriengsak.boonmee@example.com', '+66967890123', 'BMW iX', 'BIX-2024-801', '2024-07-09', 'active', '2024-07-09 12:55:00+00', '2024-07-09 12:55:00+00'),
+('550e8400-e29b-41d4-a716-446655440017', 'Narumon Chueaduang', 'narumon.chueaduang@example.com', '+66978901234', 'Polestar 2', 'P2-2022-856', '2022-08-14', 'suspended', '2022-08-14 17:30:00+00', '2024-02-05 14:20:00+00'),
+('550e8400-e29b-41d4-a716-446655440018', 'Surachai Kittisak', 'surachai.kittisak@example.com', '+66989012345', 'Audi Q4 e-tron', 'AQ4e-2023-912', '2023-09-27', 'active', '2023-09-27 11:10:00+00', '2023-09-27 11:10:00+00'),
+('550e8400-e29b-41d4-a716-446655440019', 'Jiraporn Wongwan', 'jiraporn.wongwan@example.com', '+66990123456', 'Kia Niro EV', 'KNEV-2024-967', '2024-03-11', 'active', '2024-03-11 16:35:00+00', '2024-03-11 16:35:00+00'),
+('550e8400-e29b-41d4-a716-446655440020', 'Anuman Rajchamnan', 'anuman.rajchamnan@example.com', '+66901234567', 'Tesla Model Y', 'TMY-2022-1023', '2022-05-29', 'inactive', '2022-05-29 13:50:00+00', '2023-11-12 10:05:00+00');
