@@ -134,7 +134,7 @@ export default function OwnerDetailPage({ ownerId, onBack }: OwnerDetailPageProp
               Download
             </button>
           </div>
-          <div className="overflow-x-auto">
+          <div className="hidden md:block overflow-x-auto">
             <table className="w-full">
               <thead className="bg-gray-50">
                 <tr>
@@ -172,6 +172,33 @@ export default function OwnerDetailPage({ ownerId, onBack }: OwnerDetailPageProp
               </tbody>
             </table>
           </div>
+
+          <div className="md:hidden space-y-4 p-4">
+            {payments.length === 0 ? (
+              <div className="text-center text-gray-500 py-8">
+                No payment history
+              </div>
+            ) : (
+              payments.map((payment) => (
+                <div key={payment.id} className="border border-gray-200 rounded-lg p-4">
+                  <div className="space-y-2">
+                    <div>
+                      <strong className="text-gray-900">Date:</strong> {formatDate(payment.transaction_date)}
+                    </div>
+                    <div>
+                      <strong className="text-gray-900">Type:</strong> {payment.payment_type}
+                    </div>
+                    <div>
+                      <strong className="text-gray-900">Amount:</strong> {formatCurrency(payment.amount)}
+                    </div>
+                    <div>
+                      <strong className="text-gray-900">Status:</strong> {getStatusBadge(payment.status)}
+                    </div>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
         </div>
 
         <div className="bg-white rounded-lg shadow">
@@ -188,7 +215,7 @@ export default function OwnerDetailPage({ ownerId, onBack }: OwnerDetailPageProp
               Download
             </button>
           </div>
-          <div className="overflow-x-auto">
+          <div className="hidden md:block overflow-x-auto">
             <table className="w-full">
               <thead className="bg-gray-50">
                 <tr>
@@ -225,6 +252,33 @@ export default function OwnerDetailPage({ ownerId, onBack }: OwnerDetailPageProp
                 )}
               </tbody>
             </table>
+          </div>
+
+          <div className="md:hidden space-y-4 p-4">
+            {callLogs.length === 0 ? (
+              <div className="text-center text-gray-500 py-8">
+                No call center history
+              </div>
+            ) : (
+              callLogs.map((log) => (
+                <div key={log.id} className="border border-gray-200 rounded-lg p-4">
+                  <div className="space-y-2">
+                    <div>
+                      <strong className="text-gray-900">Date:</strong> {formatDate(log.call_date)}
+                    </div>
+                    <div>
+                      <strong className="text-gray-900">Issue:</strong> {log.issue_type}
+                    </div>
+                    <div>
+                      <strong className="text-gray-900">Priority:</strong> {getPriorityBadge(log.priority)}
+                    </div>
+                    <div>
+                      <strong className="text-gray-900">Status:</strong> {getStatusBadge(log.status)}
+                    </div>
+                  </div>
+                </div>
+              ))
+            )}
           </div>
         </div>
       </div>

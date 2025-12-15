@@ -1,4 +1,5 @@
 import { Users, CreditCard, Phone, Battery } from 'lucide-react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { mockOwners } from '../lib/mockOwners';
 import { mockPayments } from '../lib/mockData';
 import { mockCallLogs } from '../lib/mockData';
@@ -58,12 +59,32 @@ export default function HomePage() {
     }
   ];
 
-  return (
-    <div>
-      <div className="mb-8">
-        <h2 className="text-3xl font-bold text-gray-900 mb-2">Dashboard Overview</h2>
-        <p className="text-gray-600">Welcome to Maka EV Motor Monitoring System</p>
-      </div>
+ // Aggregate monthly data
+ const monthlyData: { [key: string]: { transactions: number; users: number } } = {};
+ mockPayments.filter(p => p.status === 'completed').forEach(payment => {
+   const date = new Date(payment.transaction_date);
+   const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+   if (!monthlyData[monthKey]) monthlyData[monthKey] = { transactions: 0, users: 0 };
+   monthlyData[monthKey].transactions++;
+ });
+ mockOwners.forEach(owner => {
+   const date = new Date(owner.created_at);
+   const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+   if (!monthlyData[monthKey]) monthlyData[monthKey] = { transactions: 0, users: 0 };
+   monthlyData[monthKey].users++;
+ });
+ const chartData = Object.keys(monthlyData).sort().map(month => ({
+   month,
+   transactions: monthlyData[month].transactions,
+   users: monthlyData[month].users,
+ }));
+
+ return (
+   <div>
+     <div className="mb-8">
+       <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Dashboard Overview</h2>
+       <p className="text-gray-600">Welcome to Maka EV Motor Monitoring System</p>
+     </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {stats.map((stat, index) => {
@@ -83,6 +104,21 @@ export default function HomePage() {
             </div>
           );
         })}
+      </div>
+
+      <div className="mt-8 bg-white rounded-lg shadow p-6">
+        <h3 className="text-lg font-semibold text-gray-900 mb-4">Monthly Trends</h3>
+        <ResponsiveContainer width="100%" height={300}>
+          <BarChart data={chartData}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="month" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="transactions" fill="#8884d8" name="Transactions" />
+            <Bar dataKey="users" fill="#82ca9d" name="New Users" />
+          </BarChart>
+        </ResponsiveContainer>
       </div>
 
       <div className="mt-8 bg-white rounded-lg shadow p-6">

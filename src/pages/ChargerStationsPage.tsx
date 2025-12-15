@@ -63,7 +63,7 @@ export default function ChargerStationsPage() {
           </div>
         </div>
 
-        <div className="overflow-x-auto">
+        <div className="hidden md:block overflow-x-auto">
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
@@ -134,6 +134,37 @@ export default function ChargerStationsPage() {
               )}
             </tbody>
           </table>
+        </div>
+
+        <div className="md:hidden space-y-4 p-4">
+          {filteredStations.length === 0 ? (
+            <div className="text-center text-gray-500 py-12">
+              No charging stations found
+            </div>
+          ) : (
+            filteredStations.map((station) => (
+              <div key={station.id} className="border border-gray-200 rounded-lg p-4">
+                <div className="space-y-2">
+                  <div>
+                    <strong className="text-gray-900">Name:</strong> {station.name}
+                  </div>
+                  <div>
+                    <strong className="text-gray-900">Location:</strong>{' '}
+                    <div className="flex items-start gap-1 text-gray-600 text-sm">
+                      <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                      <span>{station.location}</span>
+                    </div>
+                  </div>
+                  <div>
+                    <strong className="text-gray-900">Status:</strong>{' '}
+                    <span className={`px-2 py-1 text-xs font-medium rounded-full ${getStatusBadgeClass(station.status)}`}>
+                      {station.status}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))
+          )}
         </div>
 
         <div className="px-6 py-4 border-t border-gray-200 bg-gray-50">

@@ -1,5 +1,5 @@
 import { Users, Battery, Menu, Home } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -8,7 +8,19 @@ interface LayoutProps {
 }
 
 export default function Layout({ children, currentPage, onNavigate }: LayoutProps) {
+  const [isMobile, setIsMobile] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
+  useEffect(() => {
+    const checkScreen = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      setIsSidebarOpen(!mobile);
+    };
+    checkScreen();
+    window.addEventListener('resize', checkScreen);
+    return () => window.removeEventListener('resize', checkScreen);
+  }, []);
 
   const menuItems = [
     { id: 'home', label: 'Dashboard', icon: Home },
@@ -40,9 +52,7 @@ export default function Layout({ children, currentPage, onNavigate }: LayoutProp
 
       <div className="flex">
         <aside
-          className={`${
-            isSidebarOpen ? 'w-64' : 'w-0'
-          } bg-white border-r border-gray-200 transition-all duration-300 overflow-hidden`}
+          className={`${isMobile ? 'fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-gray-200 transform' : 'relative bg-white border-r border-gray-200'} ${isMobile ? (isSidebarOpen ? 'translate-x-0' : '-translate-x-full') : (isSidebarOpen ? 'w-64' : 'w-0')} transition-all duration-300 overflow-hidden`}
         >
           <nav className="p-4 space-y-2">
             {menuItems.map((item) => {
@@ -50,7 +60,7 @@ export default function Layout({ children, currentPage, onNavigate }: LayoutProp
               return (
                 <button
                   key={item.id}
-                  onClick={() => onNavigate(item.id)}
+                  onClick={() => { onNavigate(item.id); if (isMobile) setIsSidebarOpen(false); }}
                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
                     currentPage === item.id
                       ? 'bg-blue-50 text-blue-700 font-medium'
@@ -64,6 +74,10 @@ export default function Layout({ children, currentPage, onNavigate }: LayoutProp
             })}
           </nav>
         </aside>
+
+        {isMobile && isSidebarOpen && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 z-40" onClick={() => setIsSidebarOpen(false)} />
+        )}
 
         <main className="flex-1 p-6">
           {children}

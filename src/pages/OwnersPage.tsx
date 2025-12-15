@@ -68,7 +68,7 @@ export default function OwnersPage({ onViewDetails }: OwnersPageProps) {
           </div>
         </div>
 
-        <div className="overflow-x-auto">
+        <div className="hidden md:block overflow-x-auto">
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
@@ -139,6 +139,40 @@ export default function OwnersPage({ onViewDetails }: OwnersPageProps) {
               )}
             </tbody>
           </table>
+        </div>
+
+        <div className="md:hidden space-y-4 p-4">
+          {filteredOwners.length === 0 ? (
+            <div className="text-center text-gray-500 py-12">
+              No owners found
+            </div>
+          ) : (
+            filteredOwners.map((owner) => (
+              <div key={owner.id} className="border border-gray-200 rounded-lg p-4">
+                <div className="space-y-2">
+                  <div>
+                    <strong className="text-gray-900">Name:</strong> {owner.name}
+                  </div>
+                  <div>
+                    <strong className="text-gray-900">Email:</strong> {owner.email}
+                  </div>
+                  <div>
+                    <strong className="text-gray-900">Status:</strong>{' '}
+                    <span className={`px-2 py-1 text-xs font-medium rounded-full ${getStatusBadgeClass(owner.status)}`}>
+                      {owner.status}
+                    </span>
+                  </div>
+                  <button
+                    onClick={() => onViewDetails(owner.id)}
+                    className="flex items-center gap-1 text-blue-600 hover:text-blue-800 font-medium transition-colors"
+                  >
+                    <Eye className="w-4 h-4" />
+                    View Details
+                  </button>
+                </div>
+              </div>
+            ))
+          )}
         </div>
 
         <div className="px-6 py-4 border-t border-gray-200 bg-gray-50">
